@@ -740,3 +740,888 @@ function startExperience(){
 
 </body>
 </html>
+<!-- SANA — PART 2 -->
+
+<style>
+.chapter{
+    min-height:100vh;
+    display:none;
+    position:relative;
+    align-items:center;
+    justify-content:center;
+    padding:70px 20px;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 50% 45%,rgba(255,0,130,.14),transparent 35%),
+        #050008;
+}
+
+.chapter.active{
+    display:flex;
+}
+
+.chapter-inner{
+    position:relative;
+    z-index:5;
+    width:min(850px,94vw);
+    text-align:center;
+}
+
+.chapter-code{
+    font-family:monospace;
+    font-size:10px;
+    letter-spacing:4px;
+    color:rgba(255,255,255,.35);
+    margin-bottom:18px;
+}
+
+.chapter-title{
+    font-size:clamp(45px,9vw,90px);
+    font-weight:400;
+    line-height:1.1;
+    margin-bottom:30px;
+}
+
+.chapter-title span{
+    color:#ff63aa;
+    text-shadow:0 0 35px rgba(255,0,130,.4);
+}
+
+.chapter-text{
+    max-width:700px;
+    margin:0 auto 25px;
+    font-size:clamp(17px,2.5vw,22px);
+    line-height:1.9;
+    color:rgba(255,255,255,.72);
+}
+
+.chapter-text.highlight{
+    color:white;
+    font-style:italic;
+}
+
+.chapter-line{
+    width:90px;
+    height:1px;
+    margin:30px auto;
+    background:linear-gradient(90deg,transparent,#ff4f9f,transparent);
+}
+
+.next-button{
+    margin-top:30px;
+    padding:15px 30px;
+    border-radius:50px;
+    border:1px solid rgba(255,90,160,.35);
+    background:rgba(255,255,255,.035);
+    color:white;
+    font-family:monospace;
+    font-size:10px;
+    letter-spacing:2px;
+    cursor:pointer;
+    transition:.4s;
+}
+
+.next-button:hover{
+    transform:translateY(-4px);
+    background:rgba(255,0,120,.12);
+    border-color:#ff5ba4;
+    box-shadow:0 0 35px rgba(255,0,130,.25);
+}
+
+.instagram-symbol{
+    width:100px;
+    height:100px;
+    margin:0 auto 30px;
+    border:2px solid rgba(255,255,255,.5);
+    border-radius:28px;
+    position:relative;
+    box-shadow:0 0 35px rgba(255,0,130,.2);
+}
+
+.instagram-symbol:before{
+    content:"";
+    position:absolute;
+    inset:17px;
+    border:2px solid white;
+    border-radius:22px;
+}
+
+.instagram-symbol:after{
+    content:"";
+    position:absolute;
+    width:15px;
+    height:15px;
+    border:2px solid white;
+    border-radius:50%;
+    top:39px;
+    left:39px;
+}
+
+.eye-symbol{
+    font-size:85px;
+    margin-bottom:20px;
+    filter:drop-shadow(0 0 30px rgba(100,130,255,.55));
+    animation:eyeFloat 3s ease-in-out infinite;
+}
+
+@keyframes eyeFloat{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-10px);}
+}
+
+.eye-card{
+    max-width:700px;
+    margin:35px auto;
+    padding:35px 25px;
+    border-radius:25px;
+    border:1px solid rgba(130,140,255,.15);
+    background:rgba(255,255,255,.025);
+}
+
+.eye-card p{
+    font-size:18px;
+    line-height:1.8;
+    color:rgba(255,255,255,.68);
+}
+
+.eye-card strong{
+    display:block;
+    margin-top:20px;
+    font-size:25px;
+    color:white;
+}
+
+.smile{
+    font-size:95px;
+    margin-bottom:25px;
+    color:#ffd6e7;
+    text-shadow:0 0 35px rgba(255,100,180,.5);
+    animation:smileFloat 3s ease-in-out infinite;
+}
+
+@keyframes smileFloat{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-12px);}
+}
+
+.typing-message{
+    min-height:40px;
+    margin:35px auto;
+    color:#ff86ba;
+    font-family:monospace;
+    font-size:13px;
+}
+
+.truth-box{
+    max-width:700px;
+    margin:40px auto;
+    padding:35px 25px;
+    border-radius:28px;
+    background:rgba(255,255,255,.025);
+    border:1px solid rgba(255,100,170,.15);
+}
+
+.truth-heart{
+    font-size:55px;
+    color:#ff4f9f;
+    margin-bottom:20px;
+    animation:heartBeat 1.5s infinite;
+}
+
+.truth-box h2{
+    font-size:clamp(25px,5vw,40px);
+    font-weight:400;
+    margin:20px 0;
+    color:#ff73b2;
+}
+
+.truth-box p{
+    font-size:17px;
+    line-height:1.9;
+    color:rgba(255,255,255,.65);
+}
+
+.infinity-symbol{
+    font-size:170px;
+    color:rgba(255,80,170,.1);
+    line-height:1;
+    position:absolute;
+    pointer-events:none;
+    animation:infinityPulse 5s ease-in-out infinite;
+}
+
+@keyframes infinityPulse{
+    0%,100%{transform:scale(.85);opacity:.4;}
+    50%{transform:scale(1.05);opacity:1;}
+}
+
+.forever-title{
+    font-size:clamp(40px,8vw,80px);
+    color:#ff72b2;
+    text-shadow:0 0 40px rgba(255,0,130,.35);
+    margin:35px 0;
+}
+
+#finalChapter{
+    min-height:100vh;
+    display:none;
+    position:relative;
+    padding:100px 20px;
+    background:
+        radial-gradient(circle at 50% 25%,rgba(255,0,120,.14),transparent 30%),
+        #010002;
+}
+
+.final-inner{
+    width:min(800px,94vw);
+    margin:auto;
+    text-align:center;
+}
+
+.final-system{
+    font-family:monospace;
+    font-size:12px;
+    letter-spacing:5px;
+    color:#ff6eae;
+    margin-bottom:30px;
+}
+
+.final-inner h1{
+    font-size:clamp(55px,11vw,110px);
+    font-weight:400;
+    text-shadow:0 0 15px white,0 0 50px rgba(255,0,130,.6);
+    margin-bottom:45px;
+}
+
+.final-letter{
+    font-size:clamp(16px,2.3vw,21px);
+    line-height:2;
+    color:rgba(255,255,255,.68);
+}
+
+.final-letter strong{
+    color:white;
+}
+
+.final-forever{
+    display:block;
+    margin:45px 0;
+    font-size:clamp(35px,7vw,65px);
+    color:#ff70b1;
+    text-shadow:0 0 35px rgba(255,0,130,.4);
+}
+
+.final-name{
+    margin-top:70px;
+    font-size:clamp(50px,12vw,110px);
+    letter-spacing:8px;
+    color:white;
+    text-shadow:
+        0 0 15px white,
+        0 0 45px rgba(255,0,130,.7),
+        0 0 90px rgba(255,0,130,.35);
+}
+
+.final-infinity{
+    font-size:70px;
+    color:#ff4d9e;
+    margin-top:15px;
+}
+
+.final-bottom{
+    margin-top:30px;
+    font-style:italic;
+    color:rgba(255,255,255,.5);
+    line-height:1.8;
+}
+
+@media(max-width:600px){
+    .chapter{
+        padding:65px 18px;
+    }
+
+    .chapter-title{
+        font-size:46px;
+    }
+
+    .chapter-text{
+        font-size:16px;
+    }
+
+    .instagram-symbol{
+        width:80px;
+        height:80px;
+    }
+
+    .eye-symbol{
+        font-size:70px;
+    }
+
+    .smile{
+        font-size:75px;
+    }
+
+    .truth-box{
+        padding:28px 18px;
+    }
+
+    .final-letter{
+        font-size:16px;
+        line-height:1.9;
+    }
+}
+</style>
+
+
+<section id="chapterOne" class="chapter">
+
+    <div class="chapter-inner">
+
+        <div class="chapter-code">
+            CHAPTER 01 // ORIGIN
+        </div>
+
+        <div class="instagram-symbol"></div>
+
+        <h1 class="chapter-title">
+            It started with
+            <span>Instagram.</span>
+        </h1>
+
+        <div class="chapter-line"></div>
+
+        <p class="chapter-text">
+            Out of all the people I could have met,
+            all the profiles I could have passed,
+            and all the conversations that could have happened...
+        </p>
+
+        <p class="chapter-text">
+            somehow, I found you.
+        </p>
+
+        <p class="chapter-text highlight">
+            And something that looked so ordinary
+            slowly became something incredibly important to me.
+        </p>
+
+        <button class="next-button"
+                onclick="showChapter('chapterTwo')">
+            CONTINUE MY STORY →
+        </button>
+
+    </div>
+
+</section>
+
+
+<section id="chapterTwo" class="chapter">
+
+    <div class="chapter-inner">
+
+        <div class="chapter-code">
+            CHAPTER 02 // FIRST IMPRESSION
+        </div>
+
+        <div class="eye-symbol">
+            👁️
+        </div>
+
+        <h1 class="chapter-title">
+            Your
+            <span>eyes.</span>
+        </h1>
+
+        <p class="chapter-text">
+            I don't know if you realize what your eyes
+            did to my attention.
+        </p>
+
+        <p class="chapter-text">
+            Maybe to you they're simply your eyes.
+        </p>
+
+        <p class="chapter-text">
+            But to me...
+        </p>
+
+        <div class="eye-card">
+
+            <p>
+                They were one of the first things
+                that made me stop and look a little longer.
+            </p>
+
+            <strong>
+                And somehow, I still get lost in them.
+            </strong>
+
+        </div>
+
+        <button class="next-button"
+                onclick="showChapter('chapterThree')">
+            THERE'S SOMETHING ELSE ❤️ →
+        </button>
+
+    </div>
+
+</section>
+
+
+<section id="chapterThree" class="chapter">
+
+    <div class="chapter-inner">
+
+        <div class="chapter-code">
+            CHAPTER 03 // THE SMILE
+        </div>
+
+        <div class="smile">
+            ☺
+        </div>
+
+        <h1 class="chapter-title">
+            And then...
+            <span>your smile.</span>
+        </h1>
+
+        <p class="chapter-text">
+            I love your smile more than I can properly explain.
+        </p>
+
+        <p class="chapter-text">
+            There is something about seeing you happy
+            that makes the whole world feel a little lighter.
+        </p>
+
+        <p class="chapter-text highlight">
+            I don't just love your smile.
+            I love knowing that somewhere in this world
+            there is a person whose happiness matters
+            so much to me.
+        </p>
+
+        <div class="typing-message"
+             id="typingMessage">
+        </div>
+
+        <button class="next-button"
+                onclick="showChapter('chapterFour')">
+            ONE TRUTH I NEED YOU TO KNOW →
+        </button>
+
+    </div>
+
+</section>
+
+
+<section id="chapterFour" class="chapter">
+
+    <div class="chapter-inner">
+
+        <div class="chapter-code">
+            CHAPTER 04 // NO FILTERS
+        </div>
+
+        <h1 class="chapter-title">
+            I'm not
+            <span>perfect.</span>
+        </h1>
+
+        <p class="chapter-text">
+            Sana, I don't want to pretend that I'm
+            some perfect person.
+        </p>
+
+        <p class="chapter-text">
+            I'm not.
+        </p>
+
+        <p class="chapter-text">
+            I've made mistakes.
+            I've had moments I wish I could handle differently.
+            Sometimes I don't express myself the way I should.
+        </p>
+
+        <div class="truth-box">
+
+            <div class="truth-heart">
+                ♥
+            </div>
+
+            <p>
+                There may be moments when I make mistakes,
+                including times when I've been drinking
+                and haven't behaved the way I should.
+            </p>
+
+            <h2>
+                But my feelings for you are genuine.
+            </h2>
+
+            <p>
+                I don't want you to believe that I'm perfect.
+                I want you to know that I'm real,
+                that I can recognize when I've been wrong,
+                and that I want to become better.
+            </p>
+
+        </div>
+
+        <button class="next-button"
+                onclick="showChapter('chapterFive')">
+            SHOW ME THE FUTURE →
+        </button>
+
+    </div>
+
+</section>
+
+
+<section id="chapterFive" class="chapter">
+
+    <div class="infinity-symbol">
+        ∞
+    </div>
+
+    <div class="chapter-inner">
+
+        <div class="chapter-code">
+            CHAPTER 05 // THE FUTURE
+        </div>
+
+        <h1 class="chapter-title">
+            Not just a moment.
+            <span>A future.</span>
+        </h1>
+
+        <p class="chapter-text">
+            When I think about you,
+            I don't only think about today.
+        </p>
+
+        <p class="chapter-text">
+            I think about the ordinary days
+            that could become beautiful simply
+            because you're there.
+        </p>
+
+        <p class="chapter-text">
+            The laughs.
+            The late conversations.
+            The silly arguments.
+            The apologies.
+            The adventures.
+            The memories we haven't made yet.
+        </p>
+
+        <p class="chapter-text highlight">
+            I don't know exactly what the future will look like.
+            But when I imagine mine,
+            I hope you're somewhere in it.
+        </p>
+
+        <div class="forever-title">
+            Forever. ∞
+        </div>
+
+        <button class="next-button"
+                onclick="showFinalChapter()">
+            OPEN MY HEART ❤️
+        </button>
+
+    </div>
+
+</section>
+
+
+<section id="finalChapter">
+
+    <div class="final-inner">
+
+        <div class="final-system">
+            SANA.EXE // FINAL MESSAGE
+        </div>
+
+        <h1>
+            Sana
+        </h1>
+
+        <div class="final-letter">
+
+            I could have written you a simple message.
+
+            <br><br>
+
+            I could have just said,
+            “I love you.”
+
+            <br><br>
+
+            But somehow those three words
+            never feel big enough for everything
+            I want you to understand.
+
+            <br><br>
+
+            We started with something as simple
+            as Instagram.
+
+            <br><br>
+
+            And somewhere between our conversations,
+            your eyes, your smile,
+            and all the little moments,
+            you became someone incredibly important to me.
+
+            <br><br>
+
+            I know I'm not perfect.
+
+            <br><br>
+
+            I don't want to pretend otherwise.
+
+            <br><br>
+
+            I've made mistakes, and sometimes
+            I haven't handled things the way I should.
+
+            <br><br>
+
+            But I want you to know something
+            much more important than perfection.
+
+            <br><br>
+
+            <strong>
+                My feelings for you are genuine.
+            </strong>
+
+            <br><br>
+
+            I love your eyes.
+
+            <br><br>
+
+            I love your smile.
+
+            <br><br>
+
+            But more than those things,
+            I love the person I see behind them.
+
+            <br><br>
+
+            When I imagine the future,
+            I don't imagine perfection.
+
+            <br><br>
+
+            I imagine something real.
+
+            <br><br>
+
+            Two people laughing.
+            <br>
+            Two people learning.
+            <br>
+            Two people supporting each other.
+            <br>
+            Two people growing together.
+            <br>
+            Two people choosing each other again and again.
+
+            <br><br>
+
+            And if life gives me that choice...
+
+            <span class="final-forever">
+                I want to choose you.
+            </span>
+
+            <br>
+
+            Not because I think I'm perfect.
+
+            <br><br>
+
+            But because what I feel for you is real.
+
+            <br><br>
+
+            I didn't build this just to show you
+            that I can write code.
+
+            <br><br>
+
+            I built it because sometimes
+            ordinary words don't feel like enough.
+
+            <br><br>
+
+            I wanted to create something
+            that exists only to tell you one thing:
+
+            <br><br>
+
+            <strong>
+                You matter to me.
+            </strong>
+
+            <br><br>
+
+            More than this website can show.
+
+            <br><br>
+
+            More than any program can calculate.
+
+            <br><br>
+
+            More than any algorithm could ever understand.
+
+            <br><br>
+
+            Because you're not a number.
+
+            <br><br>
+
+            You're not a result.
+
+            <br><br>
+
+            You're Sana.
+
+        </div>
+
+        <div class="final-name">
+            SANA
+        </div>
+
+        <div class="final-infinity">
+            ∞
+        </div>
+
+        <p class="final-bottom">
+            If I had to choose again...
+            <br>
+            I would still choose you.
+        </p>
+
+    </div>
+
+</section>
+
+
+<script>
+
+function showChapter(id){
+
+    document
+        .querySelectorAll(".chapter")
+        .forEach(function(chapter){
+            chapter.classList.remove("active");
+        });
+
+    document
+        .getElementById("finalChapter")
+        .style.display = "none";
+
+    document
+        .getElementById("universe")
+        .style.display = "none";
+
+    document
+        .getElementById(id)
+        .classList.add("active");
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+    if(id === "chapterThree"){
+        startTyping();
+    }
+}
+
+
+function startExperience(){
+
+    document
+        .getElementById("universe")
+        .style.display = "none";
+
+    document
+        .getElementById("chapterOne")
+        .classList.add("active");
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+function showFinalChapter(){
+
+    document
+        .querySelectorAll(".chapter")
+        .forEach(function(chapter){
+            chapter.classList.remove("active");
+        });
+
+    document
+        .getElementById("universe")
+        .style.display = "none";
+
+    document
+        .getElementById("finalChapter")
+        .style.display = "block";
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+let typingStarted = false;
+
+function startTyping(){
+
+    if(typingStarted) return;
+
+    typingStarted = true;
+
+    const message =
+        "Your eyes caught my attention... but your smile made me want to stay.";
+
+    const box =
+        document.getElementById("typingMessage");
+
+    let i = 0;
+
+    function type(){
+
+        if(i < message.length){
+
+            box.textContent +=
+                message.charAt(i);
+
+            i++;
+
+            setTimeout(type,45);
+
+        }
+
+    }
+
+    type();
+
+}
+
+</script>
