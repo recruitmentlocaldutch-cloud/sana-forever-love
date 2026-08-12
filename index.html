@@ -2147,3 +2147,676 @@ function openLoveQuestions(){
 }
 
 </script>
+<!-- =====================================================
+     SANA — PART 4
+     THE LOVE INTERROGATION ❤️
+===================================================== -->
+
+<style>
+
+#loveQuestions{
+    min-height:100vh;
+    display:none;
+    position:relative;
+    overflow:hidden;
+    align-items:center;
+    justify-content:center;
+    padding:50px 20px;
+    background:
+        radial-gradient(circle at 50% 35%,rgba(255,0,130,.18),transparent 35%),
+        #030005;
+}
+
+.questions-inner{
+    width:min(850px,94vw);
+    text-align:center;
+    position:relative;
+    z-index:5;
+}
+
+.question-system{
+    font-family:monospace;
+    font-size:10px;
+    letter-spacing:4px;
+    color:#ff6eae;
+    margin-bottom:20px;
+}
+
+.question-progress{
+    width:min(500px,85%);
+    height:4px;
+    margin:0 auto 35px;
+    background:rgba(255,255,255,.08);
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.question-progress-fill{
+    height:100%;
+    width:0%;
+    background:linear-gradient(
+        90deg,
+        #7b00ff,
+        #ff0077,
+        #ff5aa8
+    );
+    box-shadow:0 0 15px #ff247f;
+    transition:width .7s ease;
+}
+
+.question-card{
+    padding:40px 25px;
+    border-radius:30px;
+    background:rgba(255,255,255,.035);
+    border:1px solid rgba(255,255,255,.12);
+    backdrop-filter:blur(18px);
+    box-shadow:0 0 70px rgba(255,0,130,.1);
+}
+
+.question-number{
+    font-family:monospace;
+    font-size:11px;
+    letter-spacing:3px;
+    color:rgba(255,255,255,.4);
+    margin-bottom:20px;
+}
+
+.question-title{
+    font-size:clamp(30px,6vw,55px);
+    font-weight:400;
+    line-height:1.25;
+    margin-bottom:35px;
+}
+
+.answer-buttons{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    max-width:650px;
+    margin:auto;
+}
+
+.answer-btn{
+    width:100%;
+    padding:18px 20px;
+    border-radius:18px;
+    border:1px solid rgba(255,100,170,.2);
+    background:rgba(255,255,255,.035);
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:.35s;
+}
+
+.answer-btn:hover{
+    transform:translateY(-4px) scale(1.01);
+    background:rgba(255,0,120,.12);
+    border-color:#ff5ca4;
+    box-shadow:0 10px 35px rgba(255,0,130,.15);
+}
+
+.answer-response{
+    display:none;
+    margin:30px auto 0;
+    padding:25px 20px;
+    border-radius:22px;
+    background:rgba(255,0,120,.06);
+    border:1px solid rgba(255,90,160,.18);
+    color:#ffb4d2;
+    font-size:17px;
+    line-height:1.8;
+    animation:responseAppear .6s ease;
+}
+
+@keyframes responseAppear{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.next-question{
+    display:none;
+    margin-top:25px;
+    padding:15px 30px;
+    border-radius:50px;
+    border:1px solid rgba(255,90,160,.4);
+    background:rgba(255,0,120,.08);
+    color:white;
+    font-family:monospace;
+    font-size:10px;
+    letter-spacing:2px;
+    cursor:pointer;
+}
+
+.next-question:hover{
+    background:rgba(255,0,120,.18);
+    box-shadow:0 0 30px rgba(255,0,130,.2);
+}
+
+.love-counter{
+    margin-top:25px;
+    font-family:monospace;
+    font-size:10px;
+    letter-spacing:3px;
+    color:rgba(255,255,255,.35);
+}
+
+.floating-heart{
+    position:absolute;
+    bottom:-40px;
+    color:#ff4c9c;
+    animation:floatingHeart linear infinite;
+    opacity:.5;
+    pointer-events:none;
+}
+
+@keyframes floatingHeart{
+
+    from{
+        transform:translateY(0) rotate(0deg) scale(.6);
+        opacity:0;
+    }
+
+    15%{
+        opacity:.7;
+    }
+
+    85%{
+        opacity:.7;
+    }
+
+    to{
+        transform:translateY(-110vh) rotate(360deg) scale(1.2);
+        opacity:0;
+    }
+
+}
+
+#loveEnding{
+    min-height:100vh;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:60px 20px;
+    background:
+        radial-gradient(circle at 50% 40%,rgba(255,0,130,.2),transparent 38%),
+        #020003;
+}
+
+.love-ending-inner{
+    width:min(800px,94vw);
+}
+
+.big-heart{
+    font-size:100px;
+    color:#ff4d9e;
+    text-shadow:
+        0 0 25px #ff4d9e,
+        0 0 70px rgba(255,0,130,.6);
+    animation:bigHeartBeat 1.4s infinite;
+}
+
+@keyframes bigHeartBeat{
+    0%,100%{transform:scale(1);}
+    15%{transform:scale(1.2);}
+    30%{transform:scale(1);}
+    45%{transform:scale(1.12);}
+}
+
+.love-ending-inner h1{
+    font-size:clamp(45px,9vw,85px);
+    font-weight:400;
+    margin:25px 0;
+    text-shadow:0 0 40px rgba(255,0,130,.5);
+}
+
+.love-ending-inner p{
+    font-size:clamp(17px,2.5vw,22px);
+    line-height:1.9;
+    color:rgba(255,255,255,.7);
+}
+
+.final-love{
+    margin-top:35px;
+    font-size:clamp(28px,6vw,55px);
+    color:#ff72b2;
+    text-shadow:0 0 35px rgba(255,0,130,.5);
+}
+
+@media(max-width:600px){
+
+    .question-card{
+        padding:30px 18px;
+    }
+
+    .question-title{
+        font-size:30px;
+    }
+
+    .answer-btn{
+        font-size:15px;
+    }
+
+}
+
+</style>
+
+
+<section id="loveQuestions">
+
+    <div class="floating-heart"
+         style="left:5%;animation-duration:10s;">♥</div>
+
+    <div class="floating-heart"
+         style="left:18%;animation-duration:14s;animation-delay:2s;">♥</div>
+
+    <div class="floating-heart"
+         style="left:32%;animation-duration:12s;animation-delay:4s;">♥</div>
+
+    <div class="floating-heart"
+         style="left:48%;animation-duration:15s;animation-delay:1s;">♥</div>
+
+    <div class="floating-heart"
+         style="left:65%;animation-duration:11s;animation-delay:5s;">♥</div>
+
+    <div class="floating-heart"
+         style="left:80%;animation-duration:13s;animation-delay:3s;">♥</div>
+
+    <div class="floating-heart"
+         style="left:94%;animation-duration:16s;animation-delay:6s;">♥</div>
+
+
+    <div class="questions-inner">
+
+        <div class="question-system">
+            LOVE INTERROGATION SYSTEM // SANA ONLY
+        </div>
+
+        <div class="question-progress">
+            <div
+                id="questionProgress"
+                class="question-progress-fill">
+            </div>
+        </div>
+
+        <div class="question-card">
+
+            <div
+                id="questionNumber"
+                class="question-number">
+                QUESTION 01 / 05
+            </div>
+
+            <h1
+                id="questionTitle"
+                class="question-title">
+            </h1>
+
+            <div
+                id="answerButtons"
+                class="answer-buttons">
+            </div>
+
+            <div
+                id="answerResponse"
+                class="answer-response">
+            </div>
+
+            <button
+                id="nextQuestion"
+                class="next-question"
+                onclick="nextLoveQuestion()">
+                NEXT QUESTION ❤️ →
+            </button>
+
+            <div
+                id="loveCounter"
+                class="love-counter">
+                HEART STATUS: WAITING FOR SANA
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="loveEnding">
+
+    <div class="love-ending-inner">
+
+        <div class="big-heart">
+            ♥
+        </div>
+
+        <h1>
+            Investigation Complete.
+        </h1>
+
+        <p>
+            After all the evidence,
+            all the questions,
+            and all the impossible calculations...
+        </p>
+
+        <br>
+
+        <p>
+            there is only one conclusion
+            the system can produce.
+        </p>
+
+        <div class="final-love">
+            SANA,
+            <br>
+            YOU ARE MY FAVORITE PERSON. ❤️
+        </div>
+
+        <p style="margin-top:35px;">
+            And yes...
+            <br>
+            I would still choose you.
+            Again.
+            And again.
+            And again.
+        </p>
+
+    </div>
+
+</section>
+
+
+<script>
+
+const loveQuestions = [
+
+    {
+        question:
+            "What do you think happened to my heart after I met you?",
+
+        answers:[
+            "You accidentally stole it ❤️",
+            "It voluntarily surrendered 😌",
+            "It was already waiting for you 💕"
+        ],
+
+        responses:[
+            "CASE UPDATE: The suspect admits the crime. The heart has officially been recovered... unfortunately, it refuses to come back. 😂❤️",
+
+            "CORRECT. My heart saw you and basically said: 'Yeah... I'm staying here.' 😭❤️",
+
+            "That answer is dangerous, Sana... because that's exactly what I secretly wanted to hear. ❤️"
+        ]
+    },
+
+    {
+        question:
+            "If we could disappear for one evening, what would you choose?",
+
+        answers:[
+            "A quiet place with beautiful views 🌙",
+            "Food, laughs and endless talking 🍕",
+            "Just walking together with no destination ❤️"
+        ],
+
+        responses:[
+            "I'd choose the view... but honestly, I'd probably spend the whole time looking at you. ❤️",
+
+            "Perfect. Warning: I may talk too much and steal your food. Consider yourself notified. 😂❤️",
+
+            "No destination sounds perfect. If you're beside me, I don't really need one. ❤️"
+        ]
+    },
+
+    {
+        question:
+            "What should I do when you're having a bad day?",
+
+        answers:[
+            "Make me laugh 😂",
+            "Stay and listen ❤️",
+            "Give me a giant hug 🫂"
+        ],
+
+        responses:[
+            "Then prepare yourself, because my terrible jokes are officially on emergency duty. 😂",
+
+            "I like that answer. Sometimes you don't need someone to fix everything... you just need someone who stays. ❤️",
+
+            "Approved. One giant hug has been added to the emergency Sana protocol. 🫂❤️"
+        ]
+    },
+
+    {
+        question:
+            "Be honest... am I allowed to make you smile every day?",
+
+        answers:[
+            "Yes ❤️",
+            "Maybe... convince me 😏",
+            "Only if you promise to behave 😂"
+        ],
+
+        responses:[
+            "SYSTEM ERROR: Sana just gave permission. My happiness level is now dangerously high. ❤️",
+
+            "Challenge accepted. I have officially entered convincing mode. 😏❤️",
+
+            "I promise nothing... except that I'll probably still try to make you smile. 😂❤️"
+        ]
+    },
+
+    {
+        question:
+            "Final question... if your heart had one message for me, what would it say?",
+
+        answers:[
+            "Don't go anywhere ❤️",
+            "You make me happy 🥹",
+            "Maybe... stay and find out 💕"
+        ],
+
+        responses:[
+            "Sana... that sentence just broke the entire system. ❤️",
+
+            "And knowing that would honestly mean more to me than you realize. 🥹❤️",
+
+            "Then I'll stay... and let the story write itself. No pressure. Just something real. ❤️"
+        ]
+    }
+
+];
+
+
+let currentLoveQuestion = 0;
+
+function openLoveQuestions(){
+
+    document
+        .getElementById("loveInvestigation")
+        .style.display = "none";
+
+    document
+        .getElementById("finalChapter")
+        .style.display = "none";
+
+    document
+        .getElementById("universe")
+        .style.display = "none";
+
+    document
+        .getElementById("loveQuestions")
+        .style.display = "flex";
+
+    currentLoveQuestion = 0;
+
+    loadLoveQuestion();
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+function loadLoveQuestion(){
+
+    const q =
+        loveQuestions[currentLoveQuestion];
+
+    document.getElementById("questionNumber")
+        .textContent =
+        "QUESTION " +
+        String(currentLoveQuestion + 1).padStart(2,"0") +
+        " / " +
+        loveQuestions.length;
+
+    document.getElementById("questionTitle")
+        .textContent = q.question;
+
+    const buttons =
+        document.getElementById("answerButtons");
+
+    buttons.innerHTML = "";
+
+    q.answers.forEach(function(answer,index){
+
+        const button =
+            document.createElement("button");
+
+        button.className = "answer-btn";
+
+        button.textContent = answer;
+
+        button.onclick = function(){
+
+            selectLoveAnswer(index);
+
+        };
+
+        buttons.appendChild(button);
+
+    });
+
+    document.getElementById("answerResponse")
+        .style.display = "none";
+
+    document.getElementById("nextQuestion")
+        .style.display = "none";
+
+    document.getElementById("loveCounter")
+        .textContent =
+        "HEART STATUS: QUESTION " +
+        (currentLoveQuestion + 1) +
+        " ACTIVE";
+
+    document.getElementById("questionProgress")
+        .style.width =
+        ((currentLoveQuestion) /
+        loveQuestions.length * 100) + "%";
+
+}
+
+
+function selectLoveAnswer(index){
+
+    const q =
+        loveQuestions[currentLoveQuestion];
+
+    const buttons =
+        document.querySelectorAll(".answer-btn");
+
+    buttons.forEach(function(button){
+        button.disabled = true;
+        button.style.opacity = ".45";
+    });
+
+    const selected =
+        buttons[index];
+
+    selected.style.opacity = "1";
+
+    selected.style.borderColor =
+        "#ff5ca4";
+
+    selected.style.background =
+        "rgba(255,0,120,.13)";
+
+    const response =
+        document.getElementById("answerResponse");
+
+    response.textContent =
+        q.responses[index];
+
+    response.style.display = "block";
+
+    document.getElementById("loveCounter")
+        .textContent =
+        "HEART STATUS: SANA ANSWER RECORDED ❤️";
+
+    const next =
+        document.getElementById("nextQuestion");
+
+    next.style.display = "inline-block";
+
+}
+
+
+function nextLoveQuestion(){
+
+    currentLoveQuestion++;
+
+    if(currentLoveQuestion >= loveQuestions.length){
+
+        showLoveEnding();
+
+        return;
+
+    }
+
+    loadLoveQuestion();
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+function showLoveEnding(){
+
+    document
+        .getElementById("loveQuestions")
+        .style.display = "none";
+
+    document
+        .getElementById("loveEnding")
+        .style.display = "flex";
+
+    document.getElementById("questionProgress")
+        .style.width = "100%";
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/*
+   Make the existing
+   ACCEPT YOUR VERDICT button
+   open Part 4.
+*/
+
+</script>
