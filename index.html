@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050008">
+
+<title>SANA — THE ONLY CONSTANT ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    background:#050008;
+    color:white;
+    font-family:Georgia,"Times New Roman",serif;
+    overflow-x:hidden;
+}
+
+/* ===== UNIVERSE ===== */
+
+#universe{
+    min-height:100vh;
+    position:relative;
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(255,0,130,.18),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(100,0,255,.15),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(255,20,100,.10),
+            transparent 30%
+        ),
+        #050008;
+}
+
+/* ===== AURORA ===== */
+
+.aurora{
+    position:absolute;
+    width:650px;
+    height:650px;
+    border-radius:50%;
+    filter:blur(100px);
+    opacity:.15;
+    pointer-events:none;
+    animation:auroraMove 14s ease-in-out infinite alternate;
+}
+
+.aurora.one{
+    background:#9d00ff;
+    top:-300px;
+    left:-200px;
+}
+
+.aurora.two{
+    background:#ff006a;
+    right:-250px;
+    bottom:-300px;
+    animation-delay:-6s;
+}
+
+@keyframes auroraMove{
+    from{
+        transform:translate(0,0) scale(1);
+    }
+
+    to{
+        transform:translate(80px,60px) scale(1.2);
+    }
+}
+
+/* ===== STARS ===== */
+
+.stars,
+.stars:before,
+.stars:after{
+    position:absolute;
+    inset:0;
+    content:"";
+    pointer-events:none;
+
+    background-image:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.9) 1px,
+            transparent 1px
+        ),
+        radial-gradient(
+            circle,
+            rgba(255,180,230,.6) 1px,
+            transparent 1px
+        );
+
+    background-size:
+        130px 130px,
+        210px 210px;
+
+    background-position:
+        10px 30px,
+        80px 100px;
+
+    animation:starMove 35s linear infinite;
+}
+
+.stars:before{
+    opacity:.35;
+    transform:scale(1.4);
+    animation-duration:50s;
+}
+
+.stars:after{
+    opacity:.2;
+    transform:scale(1.8);
+    animation-duration:70s;
+}
+
+@keyframes starMove{
+    from{
+        transform:translateY(0);
+    }
+
+    to{
+        transform:translateY(130px);
+    }
+}
+
+/* ===== PARTICLES ===== */
+
+.particle{
+    position:absolute;
+    width:3px;
+    height:3px;
+    border-radius:50%;
+    background:white;
+    box-shadow:0 0 12px white;
+    animation:particleMove linear infinite;
+    opacity:.7;
+}
+
+@keyframes particleMove{
+
+    from{
+        transform:translateY(110vh);
+        opacity:0;
+    }
+
+    15%{
+        opacity:.8;
+    }
+
+    85%{
+        opacity:.8;
+    }
+
+    to{
+        transform:translateY(-10vh);
+        opacity:0;
+    }
+}
+
+/* ===== CENTER ===== */
+
+.system{
+    position:relative;
+    z-index:10;
+
+    min-height:100vh;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:25px;
+}
+
+.panel{
+
+    width:min(900px,95vw);
+
+    min-height:600px;
+
+    padding:55px 30px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    background:rgba(255,255,255,.035);
+
+    border:1px solid rgba(255,255,255,.13);
+
+    border-radius:30px;
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    box-shadow:
+        0 0 80px rgba(255,0,130,.08),
+        inset 0 0 50px rgba(255,255,255,.015);
+
+    animation:panelAppear 2s ease forwards;
+}
+
+@keyframes panelAppear{
+
+    from{
+        opacity:0;
+        transform:translateY(30px) scale(.96);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+/* ===== SYSTEM LABEL ===== */
+
+.system-label{
+
+    font-family:monospace;
+
+    font-size:11px;
+
+    letter-spacing:4px;
+
+    color:rgba(255,255,255,.5);
+
+    margin-bottom:35px;
+}
+
+/* ===== BOOT ===== */
+
+.boot{
+
+    min-height:160px;
+
+    font-family:monospace;
+
+    font-size:14px;
+
+    line-height:2;
+
+    color:rgba(255,255,255,.65);
+}
+
+.boot-line{
+
+    opacity:0;
+
+    animation:bootLine 1s ease forwards;
+}
+
+.boot-line:nth-child(1){
+    animation-delay:.5s;
+}
+
+.boot-line:nth-child(2){
+    animation-delay:1.2s;
+}
+
+.boot-line:nth-child(3){
+    animation-delay:1.9s;
+}
+
+.boot-line:nth-child(4){
+    animation-delay:2.6s;
+}
+
+@keyframes bootLine{
+
+    to{
+        opacity:1;
+    }
+}
+
+/* ===== PROGRESS ===== */
+
+.progress-wrapper{
+
+    width:min(500px,85%);
+
+    margin:20px auto 45px;
+}
+
+.progress-text{
+
+    font-family:monospace;
+
+    font-size:10px;
+
+    letter-spacing:2px;
+
+    color:rgba(255,255,255,.45);
+
+    margin-bottom:10px;
+}
+
+.progress{
+
+    width:100%;
+
+    height:3px;
+
+    background:rgba(255,255,255,.08);
+
+    border-radius:20px;
+
+    overflow:hidden;
+}
+
+.progress-fill{
+
+    width:0;
+
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #7b00ff,
+            #ff0077,
+            #ff3b9d
+        );
+
+    box-shadow:
+        0 0 15px rgba(255,0,120,.8);
+
+    animation:loadProgress 5s ease forwards;
+}
+
+@keyframes loadProgress{
+
+    from{
+        width:0;
+    }
+
+    to{
+        width:100%;
+    }
+}
+
+/* ===== RESULT ===== */
+
+.result{
+
+    opacity:0;
+
+    animation:
+        resultAppear 2s ease forwards;
+
+    animation-delay:5.5s;
+}
+
+@keyframes resultAppear{
+
+    from{
+        opacity:0;
+        transform:scale(.8);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+.result-small{
+
+    font-family:monospace;
+
+    font-size:10px;
+
+    letter-spacing:4px;
+
+    color:rgba(255,255,255,.45);
+
+    margin-bottom:12px;
+}
+
+.sana-name{
+
+    font-size:clamp(
+        60px,
+        13vw,
+        125px
+    );
+
+    font-weight:400;
+
+    letter-spacing:10px;
+
+    color:white;
+
+    text-shadow:
+        0 0 10px rgba(255,255,255,.8),
+        0 0 30px rgba(255,0,130,.65),
+        0 0 80px rgba(255,0,130,.35);
+
+    animation:
+        namePulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes namePulse{
+
+    from{
+        text-shadow:
+            0 0 10px rgba(255,255,255,.7),
+            0 0 30px rgba(255,0,130,.5),
+            0 0 60px rgba(255,0,130,.2);
+    }
+
+    to{
+        text-shadow:
+            0 0 15px rgba(255,255,255,1),
+            0 0 45px rgba(255,0,130,.8),
+            0 0 100px rgba(255,0,130,.45);
+    }
+}
+
+/* ===== HEART ===== */
+
+.heart{
+
+    display:inline-block;
+
+    color:#ff3d8d;
+
+    animation:
+        heartBeat 1.4s infinite;
+}
+
+@keyframes heartBeat{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    15%{
+        transform:scale(1.25);
+    }
+
+    30%{
+        transform:scale(1);
+    }
+
+    45%{
+        transform:scale(1.18);
+    }
+}
+
+/* ===== SUBTITLE ===== */
+
+.subtitle{
+
+    max-width:650px;
+
+    margin-top:25px;
+
+    font-size:
+        clamp(
+            17px,
+            2.5vw,
+            23px
+        );
+
+    line-height:1.8;
+
+    color:rgba(255,255,255,.75);
+
+    font-style:italic;
+}
+
+/* ===== BUTTON ===== */
+
+.continue{
+
+    margin-top:45px;
+
+    padding:15px 30px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.2);
+
+    border-radius:50px;
+
+    background:
+        rgba(255,255,255,.04);
+
+    color:white;
+
+    font-family:monospace;
+
+    letter-spacing:2px;
+
+    cursor:pointer;
+
+    opacity:0;
+
+    animation:
+        buttonAppear 2s ease forwards;
+
+    animation-delay:7.5s;
+
+    transition:.4s;
+}
+
+.continue:hover{
+
+    background:
+        rgba(255,0,120,.12);
+
+    border-color:
+        rgba(255,80,160,.6);
+
+    box-shadow:
+        0 0 30px
+        rgba(255,0,130,.25);
+
+    transform:translateY(-3px);
+}
+
+@keyframes buttonAppear{
+
+    to{
+        opacity:1;
+    }
+}
+
+/* ===== MOBILE ===== */
+
+@media(max-width:600px){
+
+    .panel{
+        min-height:570px;
+        padding:45px 18px;
+        border-radius:24px;
+    }
+
+    .system-label{
+        font-size:8px;
+        letter-spacing:3px;
+    }
+
+    .boot{
+        font-size:11px;
+    }
+
+    .sana-name{
+        letter-spacing:5px;
+    }
+
+    .subtitle{
+        font-size:16px;
+        line-height:1.7;
+    }
+
+    .continue{
+        font-size:10px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="universe">
+
+    <div class="aurora one"></div>
+
+    <div class="aurora two"></div>
+
+    <div class="stars"></div>
+
+    <div class="particle"
+         style="left:5%;animation-duration:12s;">
+    </div>
+
+    <div class="particle"
+         style="left:15%;animation-duration:18s;animation-delay:2s;">
+    </div>
+
+    <div class="particle"
+         style="left:25%;animation-duration:15s;animation-delay:5s;">
+    </div>
+
+    <div class="particle"
+         style="left:35%;animation-duration:20s;animation-delay:1s;">
+    </div>
+
+    <div class="particle"
+         style="left:45%;animation-duration:13s;animation-delay:4s;">
+    </div>
+
+    <div class="particle"
+         style="left:55%;animation-duration:17s;animation-delay:7s;">
+    </div>
+
+    <div class="particle"
+         style="left:65%;animation-duration:14s;animation-delay:3s;">
+    </div>
+
+    <div class="particle"
+         style="left:75%;animation-duration:19s;animation-delay:6s;">
+    </div>
+
+    <div class="particle"
+         style="left:85%;animation-duration:16s;animation-delay:2s;">
+    </div>
+
+    <div class="particle"
+         style="left:95%;animation-duration:21s;animation-delay:8s;">
+    </div>
+
+
+    <main class="system">
+
+        <section class="panel">
+
+            <div class="system-label">
+                SANA // PRIVATE LOVE SYSTEM
+            </div>
+
+
+            <div class="boot">
+
+                <div class="boot-line">
+                    &gt; Initializing memories...
+                </div>
+
+                <div class="boot-line">
+                    &gt; Searching through countless possibilities...
+                </div>
+
+                <div class="boot-line">
+                    &gt; Searching for someone extraordinary...
+                </div>
+
+                <div class="boot-line">
+                    &gt; Please wait...
+                </div>
+
+            </div>
+
+
+            <div class="progress-wrapper">
+
+                <div class="progress-text">
+                    LOVE SYSTEM INITIALIZATION
+                </div>
+
+                <div class="progress">
+
+                    <div class="progress-fill"></div>
+
+                </div>
+
+            </div>
+
+
+            <div class="result">
+
+                <div class="result-small">
+                    ONE PERSON FOUND
+                </div>
+
+                <div class="sana-name">
+                    SANA
+                    <span class="heart">♥</span>
+                </div>
+
+                <div class="subtitle">
+                    “Out of everything this world could
+                    have given me, somehow it gave me you.”
+                </div>
+
+                <button
+                    class="continue"
+                    onclick="startExperience()">
+
+                    ENTER MY HEART →
+
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script>
+
+function startExperience(){
+
+    document.body.style.transition =
+        "opacity 1s ease";
+
+    document.body.style.opacity = "0";
+
+    setTimeout(function(){
+
+        document.body.style.opacity = "1";
+
+        alert(
+            "Sana... ❤️\n\n" +
+            "You have only opened the first door."
+        );
+
+    },1000);
+
+}
+
+</script>
+
+</body>
+</html>
